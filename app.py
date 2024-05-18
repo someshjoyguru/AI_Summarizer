@@ -21,23 +21,14 @@ input_prompt = "Summarize the following text in 3 sentences:\n\n{text}"
 @app.route('/evaluate', methods=['POST'])
 def evaluate_resume():
     try:
-        # Extract data from the request
-        if 'text' not in request.form:
-            return jsonify({"error": "Text input is required"}), 400
-        
-        text_input = request.form['text']
-        
-        # Format the prompt with the input text
+        data = request.json
+        text_input = data.get('text')
+        print(text_input)
         formatted_prompt = input_prompt.format(text=text_input)
-        
-        # Get the AI response
         response = get_gemini_response(formatted_prompt)
-        
-        # Parse the response (assuming the response is already in a string format)
+        print(response)
         summary = response.strip()  # Here, you might want to handle any specific formatting
-        
         return jsonify({"summary": summary}), 200
-    
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
