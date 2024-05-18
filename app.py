@@ -17,6 +17,10 @@ def get_gemini_response(input_text):
 
 input_prompt = "Summarize the following text in 3 sentences:\n\n{text}"
 
+@app.route('/')
+def root_url():
+    return 'Nice Working!'
+
 @app.route('/evaluate', methods=['POST'])
 def evaluate_resume():
     try:
