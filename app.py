@@ -20,6 +20,10 @@ def get_gemini_response(input_text):
 
 input_prompt = "Summarize the following text in 3 sentences:\n\n{text}"
 
+@app.route("/", methods=['GET'])
+def home():
+    return "Nice working"
+
 @app.route('/evaluate', methods=['POST'])
 def evaluate_resume():
     try:
@@ -33,6 +37,8 @@ def evaluate_resume():
         return jsonify({"summary": summary}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
