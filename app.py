@@ -6,7 +6,7 @@ import json
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=['http://localhost:5173', 'https://nitjsr-cp-portal.vercel.app'], supports_credentials=True)
 
 load_dotenv()  # Load environment variables
 
