@@ -18,8 +18,6 @@ def get_gemini_response(input_text):
     response = model.generate_content(input_text)
     return response.text
 
-input_prompt = "Summarize the following text in 3 sentences:\n\n{text}"
-
 @app.route("/", methods=['GET'])
 def home():
     return "Nice working"
@@ -29,11 +27,8 @@ def evaluate_resume():
     try:
         data = request.json
         text_input = data.get('text')
-        print(text_input)
-        formatted_prompt = input_prompt.format(text=text_input)
-        response = get_gemini_response(formatted_prompt)
-        print(response)
-        summary = response.strip()  # Here, you might want to handle any specific formatting
+        response = get_gemini_response(text_input)
+        summary = response.strip()
         return jsonify({"summary": summary}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500

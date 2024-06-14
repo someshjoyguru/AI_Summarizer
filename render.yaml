@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: ats-resume-evaluator
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python app.py"
